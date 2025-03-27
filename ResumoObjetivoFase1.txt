@@ -1,0 +1,19 @@
+Fase1.
+
+1. Criar uma estrutura de dados(ED)
+	.Implementar uma lista ligada simples onde cada no representa uma antena
+	cada no deve conter a frequencia de ressonancia
+	.Cada no deve conter a frequencia de ressonancia da antena e as coordenadas da matriz
+
+
+2.Carregar dados de um ficheiro de texto
+
+	.O ficheiro contém uma matriz de caracteres a representar a cidade e as antenas.
+	.O programa deve processar esta matriz e armazenar os dados das antenas na lista ligada.
+
+
+3.Manipulação da lista ligada	
+	.Inserção de uma nova antena na lista.
+	.Remoção de uma antena existente.
+	.Dedução automática das localizações com efeito nefasto (locais onde o sinal das antenas interfere) e 	representação desses locais também numa lista ligada.
+	.Listagem tabular na consola das antenas e dos locais com efeito nefasto.
