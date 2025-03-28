@@ -17,12 +17,11 @@ int menu(){
     int opcao;
     printf("1. Carregar antenas de um ficheiro\n");
     printf("2. Inserir Antena\n");
-    printf("3. Listar antenas\n");
-    printf("4. Calcular e listar efeitos nefastos\n");
-    printf("5. Listar efeitos nefastos\n");
-    printf("6. Libertar memoria da lista de antenas\n");
-    printf("7. Libertar memoria da lista de efeitos nefastos\n");
-    printf("8. Sair\n");
+    printf("3. Calcular efeitos nefastos\n");
+    printf("4. Listar antenas e efeitos nefastos\n");
+    printf("5. Libertar memoria da lista de antenas\n");
+    printf("6. Libertar memoria da lista de efeitos nefastos\n");
+    printf("7. Sair\n");
     printf("================================================\n");
     printf("Escolha uma opção: ");
     scanf("%d", &opcao);
@@ -70,34 +69,28 @@ int main() {
             printf("Antena inserida com sucesso!\n");
             break;
         }
-
         case 3:
-            printf("Lista de antenas:\n");
-            listarAntenas(listaAntenas);
-            break;
-
-        case 4:
             listaEfeitos = calcularEfeitosNefastos(listaAntenas);
             printf("Efeitos nefastos calculados com sucesso!\n");
             break;
         
-        case 5:
+        case 4:
             listarAntenasEEfeitos(listaAntenas, listaEfeitos);
             break;
-            
-        case 6:
+
+        case 5:
             libertarListaAntenas(listaAntenas);
             listaAntenas = NULL;  // Importante para evitar acessos inválidos
             printf("Memória da lista de antenas liberada com sucesso!\n");
             break;
         
-        case 7:
+        case 6:
             libertarListaEfeitos(listaEfeitos);
             listaEfeitos = NULL;  // Importante para evitar acessos inválidos
             printf("Memória da lista de efeitos nefastos liberada com sucesso!\n");
             break;
 
-        case 8:
+        case 7:
             printf("Saindo do programa...\n");
             break;
 
@@ -105,7 +98,7 @@ int main() {
             printf("Opção inválida! Tente novamente.\n");
             break;
         }
-    } while (opcao != 8);
+    } while (opcao != 7);
 
     // Libera memória antes de sair
     libertarListaAntenas(listaAntenas);

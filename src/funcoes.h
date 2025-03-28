@@ -72,4 +72,5 @@ void libertarListaAntenas(Antena *lista);
  */
 void libertarListaEfeitos(EfeitoNefasto *lista);
 
+
 #endif // FUNCOES_H
