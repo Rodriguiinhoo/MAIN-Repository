@@ -8,8 +8,9 @@
     * \date 2025
 */
 
+#ifndef DADOS_H
 #define DADOS_H
-// Definição da estrutura Antena
+
 typedef struct Antena {
     char frequencia;
     int x, y;
@@ -17,10 +18,11 @@ typedef struct Antena {
     struct Antena* prox;
 } Antena;
 
-// Definição da estrutura Efeito Nefasto
 typedef struct EfeitoNefasto {
-    char tipo;
+    char frequencian;
     int x, y;
     int aux;
     struct EfeitoNefasto* prox;
 } EfeitoNefasto;
+
+#endif // DADOS_H

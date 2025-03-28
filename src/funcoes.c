@@ -16,17 +16,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <malloc.h>
-
-#include "funcoes.h"
 #include "dados.h"
+#include "funcoes.h"
 
-// Funcao para ler um ficheiro e carregar as antenas, aramzenando as antenas numa lista
-/*!
+// Funcao para ler um ficheiro e carregar as antenas, armazenando as antenas numa lista
+/**
     \brief Função para carregar as antenas de um ficheiro
     \param nomeficheiro Nome do ficheiro a ser lido
     \return Retorna a lista de antenas lidas do ficheiro
 */
-
 Antena* carregarAntenasDeFicheiro(const char *nomeficheiro){
     FILE *f = fopen(nomeficheiro, "r");
     if(f == NULL){
@@ -41,7 +39,7 @@ Antena* carregarAntenasDeFicheiro(const char *nomeficheiro){
     while (fgets(linha, sizeof(linha), f)){
         for(int x = 0; linha[x] != '\0' && linha[x] != '\n'; x++){
             if (linha[x] != '.'){ //Assumir que . e um espaco vazio
-                lista = inserirAntena(lista, linha[x], x , y);
+                lista = inserirAntenaInicio(lista, linha[x], x , y);
             }
         }
         y++; // Incrementar a linha, fazendo com que a proxima linha seja a linha seguinte e a contar do 0;
@@ -72,32 +70,115 @@ Antena* inserirAntenaInicio(Antena *lista, char frequencia, int x, int y){
     return nova; // Retorna a nova antena que foi inserida
 }
 
-// Funcao auxiliar para iterar a lista de antenas
-/*!
-    \brief Função auxiliar para listar as antenas
-    \param lista Lista de antenas
-*/
-void listarAntenas(Antena *lista){
-    while(lista){
-        lista = lista->prox; // Avanca para a proxima antena, ou seja, itera as linhas da lista
+
+EfeitoNefasto *adicionarEfeito(EfeitoNefasto *lista, char frequencia, int x, int y) {
+    // Aloca memória para o novo nó
+    EfeitoNefasto *novo = (EfeitoNefasto *)malloc(sizeof(EfeitoNefasto));
+    if (novo == NULL) {
+        printf("Erro ao alocar memória para efeito nefasto.\n");
+        return lista;
     }
+
+    // Preenche os dados do novo efeito
+    novo->frequencian = frequencia;
+    novo->x = x;
+    novo->y = y;
+    novo->prox = lista; // Insere no início da lista
+
+    return novo;
 }
 
-// Função para calcular locais de efeito nefasto (futura implementação)
+/**
+ * @brief Funcao para detetar em que locais existem efeitos nefastos
+ * 
+ * @param lista 
+ * @return Retorna a lista de efeitos nefastos 
+ */
+
+// Função para calcular os efeitos nefastos
 EfeitoNefasto* calcularEfeitosNefastos(Antena *lista) {
-    
-    // Implementar a função para calcular os locais de efeito nefasto
-    return NULL;
+    EfeitoNefasto *efeitos = NULL;
+
+    for (Antena *a1 = lista; a1; a1 = a1->prox) {
+        for (Antena *a2 = a1->prox; a2; a2 = a2->prox) { // Evita comparações redundantes
+            if (a1->frequencia == a2->frequencia) { // Só comparam antenas com a mesma frequência
+                // Caso estejam na mesma linha (y é igual)
+                if (a1->y == a2->y) {
+                    int menorX = (a1->x < a2->x) ? a1->x : a2->x;
+                    int maiorX = (a1->x > a2->x) ? a1->x : a2->x;
+
+                    // Adiciona efeitos antes da primeira antena e depois da segunda
+                    efeitos = adicionarEfeito(efeitos, menorX - 1, a1->y); // Antes da primeira antena
+                    efeitos = adicionarEfeito(efeitos, maiorX + 1, a1->y); // Depois da segunda antena
+                }
+                // Caso estejam na mesma coluna (x é igual)
+                else if (a1->x == a2->x) {
+                    int menorY = (a1->y < a2->y) ? a1->y : a2->y;
+                    int maiorY = (a1->y > a2->y) ? a1->y : a2->y;
+
+                    // Adiciona efeitos acima da primeira antena e abaixo da segunda
+                    efeitos = adicionarEfeito(efeitos, a1->x, menorY - 1); // Acima da primeira antena
+                    efeitos = adicionarEfeito(efeitos, a1->x, maiorY + 1); // Abaixo da segunda antena
+                }
+                // Caso estejam na mesma diagonal
+                else if (abs(a1->x - a2->x) == abs(a1->y - a2->y)) {
+                    int menorX = (a1->x < a2->x) ? a1->x : a2->x;
+                    int maiorX = (a1->x > a2->x) ? a1->x : a2->x;
+                    int menorY = (a1->y < a2->y) ? a1->y : a2->y;
+                    int maiorY = (a1->y > a2->y) ? a1->y : a2->y;
+
+                    // Adiciona efeitos nas posições diagonais adjacentes
+                    efeitos = adicionarEfeito(efeitos, menorX - 1, menorY - 1); // Antes da primeira antena (diagonal superior esquerda)
+                    efeitos = adicionarEfeito(efeitos, maiorX + 1, maiorY + 1); // Depois da segunda antena (diagonal inferior direita)
+                }
+            }
+        }
+    }
+
+    return efeitos;
 }
 
-// Listar os efeitos nefastos
+/**
+ * @brief funcao para listar efeitos nefastos
+ * 
+ * @param lista 
+ */
 void listarEfeitosNefastos(EfeitoNefasto *lista) {
-    while (lista) {
-        lista = lista->prox; // Avanca para a proxima antena, ou seja, itera as linhas da lista de efeitos nefastos
+    if (lista == NULL) {
+        printf("Nenhum efeito nefasto encontrado.\n");
+        return;
+    }
+
+    printf("Efeitos nefastos detectados:\n");
+    for (EfeitoNefasto *atual = lista; atual != NULL; atual = atual->prox) {
+        printf("Frequência: %c | Posição: (%d, %d)\n", atual->frequencian, atual->x, atual->y);
     }
 }
 
-// Funções para liberar memória das listas
+void listarAntenasEEfeitos(Antena *listaAntenas, EfeitoNefasto *listaEfeitos) {
+    printf("======================================================================\n");
+    printf("|   Antenas                        |   Efeitos Nefastos                  |\n");
+    printf("======================================================================\n");
+    printf("|  Frequência  |    X    |    Y    |  |  Frequência  |    X    |    Y    |\n");
+    printf("======================================================================\n");
+
+    Antena *a = listaAntenas;
+    EfeitoNefasto *e = listaEfeitos;
+
+    while (a != NULL || e != NULL) {
+        printf("|      %c      |   %3d   |   %3d   |  |      %c      |   %3d   |   %3d   |\n",
+               (a != NULL) ? a->frequencia : ' ', (a != NULL) ? a->x : 0, (a != NULL) ? a->y : 0,
+               (e != NULL) ? e->frequencian : ' ', (e != NULL) ? e->x : 0, (e != NULL) ? e->y : 0);
+
+        if (a != NULL) a = a->prox;
+        if (e != NULL) e = e->prox;
+    }
+
+    printf("======================================================================\n");
+}
+
+
+
 void libertarListaAntenas(Antena *lista) {
     while (lista) {
         Antena *temp = lista;
@@ -105,6 +186,7 @@ void libertarListaAntenas(Antena *lista) {
         free(temp);
     }
 }
+
 
 void libertarListaEfeitos(EfeitoNefasto *lista) {
     while (lista) {
