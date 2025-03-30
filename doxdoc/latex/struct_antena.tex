@@ -1,0 +1,45 @@
+\hypertarget{struct_antena}{}\doxysection{Referência à estrutura Antena}
+\label{struct_antena}\index{Antena@{Antena}}
+
+
+Estrutura que representa uma antena.  
+
+
+
+
+{\ttfamily \#include $<$dados.\+h$>$}
+
+
+
+Diagrama de colaboração para Antena\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=174pt]{struct_antena__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Campos de Dados}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_antena_ac63b1f52fef39d625481adee7d69f268}\label{struct_antena_ac63b1f52fef39d625481adee7d69f268}} 
+int \mbox{\hyperlink{struct_antena_ac63b1f52fef39d625481adee7d69f268}{frequencia}}
+\begin{DoxyCompactList}\small\item\em Frequência da antena. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_antena_a6150e0515f7202e2fb518f7206ed97dc}\label{struct_antena_a6150e0515f7202e2fb518f7206ed97dc}} 
+int {\bfseries x}
+\item 
+\mbox{\Hypertarget{struct_antena_a0a2f84ed7838f07779ae24c5a9086d33}\label{struct_antena_a0a2f84ed7838f07779ae24c5a9086d33}} 
+int \mbox{\hyperlink{struct_antena_a0a2f84ed7838f07779ae24c5a9086d33}{y}}
+\begin{DoxyCompactList}\small\item\em Coordenadas da antena (x, y). \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_antena_a43eb7a3a19eb2732361120c556e00e2d}\label{struct_antena_a43eb7a3a19eb2732361120c556e00e2d}} 
+struct \mbox{\hyperlink{struct_antena}{Antena}} $\ast$ \mbox{\hyperlink{struct_antena_a43eb7a3a19eb2732361120c556e00e2d}{prox}}
+\begin{DoxyCompactList}\small\item\em Ponteiro para a próxima antena na lista. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descrição detalhada}
+Estrutura que representa uma antena. 
+
+A estrutura \mbox{\hyperlink{struct_antena}{Antena}} contém informações sobre a frequência e a posição (x, y) de uma antena. A variável {\ttfamily prox} é um ponteiro para a próxima antena na lista encadeada. 
+
+A documentação para esta estrutura foi gerada a partir do seguinte ficheiro\+:\begin{DoxyCompactItemize}
+\item 
+/mnt/c/\+Users/rodri/\+Downloads/\+Repositorio-\/\+EDA/\+MAIN-\/\+Repository/src/\mbox{\hyperlink{dados_8h}{dados.\+h}}\end{DoxyCompactItemize}

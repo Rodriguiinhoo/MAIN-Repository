@@ -1,0 +1,259 @@
+\hypertarget{funcoes_8h}{}\doxysection{Referência ao ficheiro /mnt/c/\+Users/rodri/\+Downloads/\+Repositorio-\/\+EDA/\+MAIN-\/\+Repository/src/funcoes.h}
+\label{funcoes_8h}\index{/mnt/c/Users/rodri/Downloads/Repositorio-\/EDA/MAIN-\/Repository/src/funcoes.h@{/mnt/c/Users/rodri/Downloads/Repositorio-\/EDA/MAIN-\/Repository/src/funcoes.h}}
+
+
+Ficheiro header com as funções.  
+
+
+{\ttfamily \#include \char`\"{}dados.\+h\char`\"{}}\newline
+Diagrama de dependências de inclusão para funcoes.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=223pt]{funcoes_8h__incl}
+\end{center}
+\end{figure}
+Este grafo mostra quais são os ficheiros que incluem directamente ou indirectamente este ficheiro\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{funcoes_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Funções}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{funcoes_8h_ae83fcdbeb2b6757fc741ae953b633ee1}\label{funcoes_8h_ae83fcdbeb2b6757fc741ae953b633ee1}} 
+int {\bfseries menu} ()
+\item 
+\mbox{\hyperlink{struct_antena}{Antena}} $\ast$ \mbox{\hyperlink{funcoes_8h_a8672bac3d21028cae0353c9e33179a53}{ler\+Ficheiro}} (const char $\ast$nome\+Ficheiro)
+\begin{DoxyCompactList}\small\item\em Carrega antenas de um ficheiro. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_antena}{Antena}} $\ast$ \mbox{\hyperlink{funcoes_8h_a5f11b3aed3a0ed3b2471305c7f397815}{inserir\+Antena\+Inicio}} (\mbox{\hyperlink{struct_antena}{Antena}} $\ast$lista, int frequencia, int x, int y)
+\begin{DoxyCompactList}\small\item\em Insere uma antena no início da lista. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_efeito_nefasto}{Efeito\+Nefasto}} $\ast$ \mbox{\hyperlink{funcoes_8h_a9aa70de260f875ae5c6596e5e6baa48b}{adicionar\+Efeito}} (\mbox{\hyperlink{struct_efeito_nefasto}{Efeito\+Nefasto}} $\ast$lista, int frequencia, int x, int y)
+\begin{DoxyCompactList}\small\item\em Construct a new adicionar Efeito object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_efeito_nefasto}{Efeito\+Nefasto}} $\ast$ \mbox{\hyperlink{funcoes_8h_a37e1e531f5329eefbcce66e362dcb1a6}{calcular\+Efeitos\+Nefastos}} (\mbox{\hyperlink{struct_antena}{Antena}} $\ast$lista)
+\begin{DoxyCompactList}\small\item\em Calcula os locais com efeitos nefastos. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{funcoes_8h_ad8e25ea7e05f77d363c12d6f63e7ebde}{listar\+Antenas}} (\mbox{\hyperlink{struct_antena}{Antena}} $\ast$lista)
+\begin{DoxyCompactList}\small\item\em Lista todas as antenas. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{funcoes_8h_ad6462c4a35b2619d16154471b7338a6e}{listar\+Efeitos}} (\mbox{\hyperlink{struct_efeito_nefasto}{Efeito\+Nefasto}} $\ast$lista)
+\begin{DoxyCompactList}\small\item\em Lista todos os efeitos nefastos. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{funcoes_8h_a1b17ec16918e68267b1ac12f215d5cc6}{libertar\+Lista\+Antenas}} (\mbox{\hyperlink{struct_antena}{Antena}} $\ast$lista)
+\begin{DoxyCompactList}\small\item\em Liberta a memória da lista de antenas. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{funcoes_8h_acdb8cb70a3bcb6e244835103450ecf38}{libertar\+Lista\+Efeitos}} (\mbox{\hyperlink{struct_efeito_nefasto}{Efeito\+Nefasto}} $\ast$lista)
+\begin{DoxyCompactList}\small\item\em Liberta a memória da lista de efeitos nefastos. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descrição detalhada}
+Ficheiro header com as funções. 
+
+\begin{DoxyAuthor}{Autor}
+Rodrigo Henrique Silva Pinheiro 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Data}
+2025-\/03-\/25 
+\end{DoxyDate}
+
+
+\doxysubsection{Documentação das funções}
+\mbox{\Hypertarget{funcoes_8h_a9aa70de260f875ae5c6596e5e6baa48b}\label{funcoes_8h_a9aa70de260f875ae5c6596e5e6baa48b}} 
+\index{funcoes.h@{funcoes.h}!adicionarEfeito@{adicionarEfeito}}
+\index{adicionarEfeito@{adicionarEfeito}!funcoes.h@{funcoes.h}}
+\doxysubsubsection{\texorpdfstring{adicionarEfeito()}{adicionarEfeito()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_efeito_nefasto}{Efeito\+Nefasto}}$\ast$ adicionar\+Efeito (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_efeito_nefasto}{Efeito\+Nefasto}} $\ast$}]{lista,  }\item[{int}]{frequencia,  }\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})}
+
+
+
+Construct a new adicionar Efeito object. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em lista} & \\
+\hline
+{\em frequencia} & \\
+\hline
+{\em x} & \\
+\hline
+{\em y} & \\
+\hline
+\end{DoxyParams}
+Construct a new adicionar Efeito object.
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em lista} & \\
+\hline
+{\em frequencia} & \\
+\hline
+{\em x} & \\
+\hline
+{\em y} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Efeito\+Nefasto$\ast$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{funcoes_8h_a37e1e531f5329eefbcce66e362dcb1a6}\label{funcoes_8h_a37e1e531f5329eefbcce66e362dcb1a6}} 
+\index{funcoes.h@{funcoes.h}!calcularEfeitosNefastos@{calcularEfeitosNefastos}}
+\index{calcularEfeitosNefastos@{calcularEfeitosNefastos}!funcoes.h@{funcoes.h}}
+\doxysubsubsection{\texorpdfstring{calcularEfeitosNefastos()}{calcularEfeitosNefastos()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_efeito_nefasto}{Efeito\+Nefasto}}$\ast$ calcular\+Efeitos\+Nefastos (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_antena}{Antena}} $\ast$}]{lista\+Antenas }\end{DoxyParamCaption})}
+
+
+
+Calcula os locais com efeitos nefastos. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em lista} & Lista de antenas. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Retorna a lista de efeitos nefastos calculados.
+\end{DoxyReturn}
+Calcula os locais com efeitos nefastos.
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em lista} & Lista de antenas \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Retorna a lista de efeitos nefastos 
+\end{DoxyReturn}
+\mbox{\Hypertarget{funcoes_8h_a5f11b3aed3a0ed3b2471305c7f397815}\label{funcoes_8h_a5f11b3aed3a0ed3b2471305c7f397815}} 
+\index{funcoes.h@{funcoes.h}!inserirAntenaInicio@{inserirAntenaInicio}}
+\index{inserirAntenaInicio@{inserirAntenaInicio}!funcoes.h@{funcoes.h}}
+\doxysubsubsection{\texorpdfstring{inserirAntenaInicio()}{inserirAntenaInicio()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_antena}{Antena}}$\ast$ inserir\+Antena\+Inicio (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_antena}{Antena}} $\ast$}]{lista,  }\item[{int}]{frequencia,  }\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})}
+
+
+
+Insere uma antena no início da lista. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em lista} & Lista de antenas. \\
+\hline
+{\em frequencia} & Frequência da antena. \\
+\hline
+{\em x} & Coordenada X da antena. \\
+\hline
+{\em y} & Coordenada Y da antena. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Retorna a lista de antenas com a nova antena inserida.
+\end{DoxyReturn}
+Insere uma antena no início da lista.
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em lista} & Lista de antenas \\
+\hline
+{\em frequencia} & Frequencia da antena \\
+\hline
+{\em x} & Coordenada x da antena \\
+\hline
+{\em y} & Coordenada y da antena \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Retorna a lista de antenas com a nova antena inserida 
+\end{DoxyReturn}
+\mbox{\Hypertarget{funcoes_8h_a8672bac3d21028cae0353c9e33179a53}\label{funcoes_8h_a8672bac3d21028cae0353c9e33179a53}} 
+\index{funcoes.h@{funcoes.h}!lerFicheiro@{lerFicheiro}}
+\index{lerFicheiro@{lerFicheiro}!funcoes.h@{funcoes.h}}
+\doxysubsubsection{\texorpdfstring{lerFicheiro()}{lerFicheiro()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_antena}{Antena}}$\ast$ ler\+Ficheiro (\begin{DoxyParamCaption}\item[{const char $\ast$}]{nome\+Ficheiro }\end{DoxyParamCaption})}
+
+
+
+Carrega antenas de um ficheiro. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em nomeficheiro} & Nome do ficheiro a ser lido. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Retorna a lista de antenas carregadas.
+\end{DoxyReturn}
+Carrega antenas de um ficheiro.
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em nomeficheiro} & Nome do ficheiro a ser lido \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Retorna a lista de antenas lidas do ficheiro 
+\end{DoxyReturn}
+\mbox{\Hypertarget{funcoes_8h_a1b17ec16918e68267b1ac12f215d5cc6}\label{funcoes_8h_a1b17ec16918e68267b1ac12f215d5cc6}} 
+\index{funcoes.h@{funcoes.h}!libertarListaAntenas@{libertarListaAntenas}}
+\index{libertarListaAntenas@{libertarListaAntenas}!funcoes.h@{funcoes.h}}
+\doxysubsubsection{\texorpdfstring{libertarListaAntenas()}{libertarListaAntenas()}}
+{\footnotesize\ttfamily void libertar\+Lista\+Antenas (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_antena}{Antena}} $\ast$}]{lista }\end{DoxyParamCaption})}
+
+
+
+Liberta a memória da lista de antenas. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em lista} & Lista de antenas.\\
+\hline
+{\em lista} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{funcoes_8h_acdb8cb70a3bcb6e244835103450ecf38}\label{funcoes_8h_acdb8cb70a3bcb6e244835103450ecf38}} 
+\index{funcoes.h@{funcoes.h}!libertarListaEfeitos@{libertarListaEfeitos}}
+\index{libertarListaEfeitos@{libertarListaEfeitos}!funcoes.h@{funcoes.h}}
+\doxysubsubsection{\texorpdfstring{libertarListaEfeitos()}{libertarListaEfeitos()}}
+{\footnotesize\ttfamily void libertar\+Lista\+Efeitos (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_efeito_nefasto}{Efeito\+Nefasto}} $\ast$}]{lista }\end{DoxyParamCaption})}
+
+
+
+Liberta a memória da lista de efeitos nefastos. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em lista} & Lista de efeitos.\\
+\hline
+{\em lista} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{funcoes_8h_ad8e25ea7e05f77d363c12d6f63e7ebde}\label{funcoes_8h_ad8e25ea7e05f77d363c12d6f63e7ebde}} 
+\index{funcoes.h@{funcoes.h}!listarAntenas@{listarAntenas}}
+\index{listarAntenas@{listarAntenas}!funcoes.h@{funcoes.h}}
+\doxysubsubsection{\texorpdfstring{listarAntenas()}{listarAntenas()}}
+{\footnotesize\ttfamily void listar\+Antenas (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_antena}{Antena}} $\ast$}]{lista\+Antenas }\end{DoxyParamCaption})}
+
+
+
+Lista todas as antenas. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em lista} & Lista de antenas.\\
+\hline
+{\em lista\+Antenas} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{funcoes_8h_ad6462c4a35b2619d16154471b7338a6e}\label{funcoes_8h_ad6462c4a35b2619d16154471b7338a6e}} 
+\index{funcoes.h@{funcoes.h}!listarEfeitos@{listarEfeitos}}
+\index{listarEfeitos@{listarEfeitos}!funcoes.h@{funcoes.h}}
+\doxysubsubsection{\texorpdfstring{listarEfeitos()}{listarEfeitos()}}
+{\footnotesize\ttfamily void listar\+Efeitos (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_efeito_nefasto}{Efeito\+Nefasto}} $\ast$}]{lista\+Efeitos }\end{DoxyParamCaption})}
+
+
+
+Lista todos os efeitos nefastos. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em lista} & Lista de efeitos nefastos.\\
+\hline
+{\em lista\+Efeitos} & \\
+\hline
+\end{DoxyParams}
