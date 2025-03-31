@@ -75,42 +75,47 @@
                  printf("Antena inserida com sucesso!\n");
                  break;
              }
-             case 3:
+
+             case 3: {
                  listaEfeitos = calcularEfeitosNefastos(listaAntenas);
                  printf("Efeitos nefastos calculados com sucesso!\n");
                  break;
-         
-             case 4:
+                }
+
+             case 4: {
                     if (listaAntenas == NULL)
                     printf("Erro ao listar as antenas\n");
                     else 
                     listarAntenas(listaAntenas);
                  break;
-            
-             case 5:
+                }
+
+             case 5: {
+                // Verifica se a lista de efeitos nefastos está vazia
                 if (listaEfeitos == NULL)
                     printf("Erro ao listar Efeitos\n");
                 else
                     listarEfeitos(listaEfeitos);
                 break;
+                }
  
-             case 6:
-
+             case 6:{
                  libertarListaAntenas(listaAntenas);
                  listaAntenas = NULL;  // Importante para evitar acessos inválidos
                  printf("Memória da lista de antenas liberada com sucesso!\n");
                  break;
-         
-             case 7:
+                }
+
+             case 7:{
                  libertarListaEfeitos(listaEfeitos);
                  listaEfeitos = NULL;  // Importante para evitar acessos inválidos
                  printf("Memória da lista de efeitos nefastos liberada com sucesso!\n");
                  break;
- 
-             case 8:
+                }
+             case 8:{
                  printf("Saindo do programa...\n");
                  break;
- 
+             }
              default:
                  printf("Opção inválida! Tente novamente.\n");
                  break;
