@@ -19,11 +19,27 @@
   * antena na lista encadeada.
   */
  typedef struct Antena {
-     int frequencia; ///< Frequência da antena.
+     char frequencia; ///< Frequência da antena.
      int x, y;      ///< Coordenadas da antena (x, y).
-     struct Antena* prox; ///< Ponteiro para a próxima antena na lista.
+     struct Antena *prox; ///< Ponteiro para a próxima antena na lista.
  } Antena;
- 
+
+ typedef struct CreateVertice{
+       Antena *antena; ///< Ponteiro para a antena associada ao vértice.
+       struct CreateVertice *proxvertice; ///< Ponteiro para o próximo vértice na lista.
+       struct Aresta *arestas; ///< Ponteiro para a lista de arestas do vértice.
+ } CreateVertice;
+
+   typedef struct Aresta{
+         CreateVertice *destino; ///< Ponteiro para o vértice de destino da aresta.
+         struct Aresta *proxaresta; ///< Ponteiro para a próxima aresta na lista.
+   } Aresta;
+
+   typedef struct Grafo{
+         CreateVertice *listvertices; ///< Ponteiro para a lista de vértices do grafo.
+   } Grafo;
+
+
  /**
   * \brief Estrutura que representa um efeito nefasto.
   * 
@@ -31,7 +47,7 @@
   * (x, y) do efeito. A variável `prox` é um ponteiro para o próximo efeito na lista.
   */
  typedef struct EfeitoNefasto {
-     int frequencia; ///< Frequência associada ao efeito nefasto.
+     char frequencia; ///< Frequência associada ao efeito nefasto.
      int x, y;       ///< Coordenadas (x, y) do efeito nefasto.
      struct EfeitoNefasto* prox; ///< Ponteiro para o próximo efeito na lista.
  } EfeitoNefasto;
