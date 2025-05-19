@@ -1,0 +1,169 @@
+\documentclass[12pt,a4paper]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[portuguese]{babel}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{cite}
+\usepackage{glossaries}
+\usepackage{float}
+
+\title{Análise e Implementação de Estruturas de Dados Avançadas para Deteção de Interferência em Antenas}
+\author{Rodrigo Henrique Silva Pinheiro}
+
+\date{16 Maio 2025}
+
+\makeglossaries
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Este trabalho apresenta uma solução computacional para o problema de deteção de interferências em redes de antenas, utilizando estruturas de dados avançadas. O estudo aborda a modelagem do problema através de listas ligadas e grafos, implementadas em linguagem C, com o objetivo de identificar localizações com efeitos nefastos causados por ressonância entre antenas. A abordagem metodológica incluiu revisão de literatura sobre estruturas de dados, análise comparativa de soluções existentes e desenvolvimento de algoritmos eficientes. Os resultados demonstram a eficácia da solução proposta em diferentes cenários de teste, contribuindo com uma abordagem inovadora para a otimização de redes de telecomunicações. O trabalho destaca-se pela integração de conceitos teóricos com aplicação prática, seguindo rigorosos padrões de documentação e validação.
+\end{abstract}
+
+\tableofcontents
+\listoffigures
+\listoftables
+
+\chapter{Introdução}
+\section{Motivação}
+O presente capítulo introduz o contexto e objetivos do trabalho desenvolvido. 
+
+Uma das grandes motivacoes foi o aprendizado de listas ligadas e grafos, aplicando em pratica neste projeto, que obriga a manipular estas estruturas de forma efiente. Tendo assim um dos principios principais como encapsulamento, eficiencia e organizacao de codigo.
+
+\section{Enquadramento}
+Este trabalho enquadra-se no âmbito da unidade curricular de Estruturas de Dados Avançadas do curso de Licenciatura em Engenharia de Sistemas e Informática do IPCA. A solução desenvolvida diferencia-se de abordagens convencionais pela aplicação sistemática de estruturas de dados dinâmicas e algoritmos de grafos.
+
+\section{Objetivos}
+Os principais objetivos definidos foram:
+\begin{itemize}
+\item Desenvolver um modelo computacional para representação de redes de antenas
+\item Implementar algoritmos eficientes para deteção de interferências
+\item Validar a solução em diferentes cenários de teste
+\end{itemize}
+
+\section{Metodologia}
+Adotou-se uma metodologia de desenvolvimento iterativo, com as seguintes fases:
+\begin{enumerate}
+\item Revisão de literatura e estudo de soluções existentes
+\item Modelação do problema e especificação de requisitos
+\item Implementação e testes
+\item Validação e documentação
+\end{enumerate}
+
+\section{Estrutura do Documento}
+Este documento está organizado em cinco capítulos principais. O Capítulo 2 apresenta o estado da arte. O Capítulo 3 detalha a análise e especificação da solução. Por fim, o Capítulo 4 apresenta as conclusões.
+
+\chapter{Estado da Arte}
+\section{Conceitos Fundamentais}
+Este capítulo explora os fundamentos teóricos e soluções existentes relevantes para o problema em estudo.
+
+As estruturas de dados dinâmicas, particularmente listas ligadas e grafos, têm sido amplamente utilizadas em problemas de representação espacial \cite{ref2}. A teoria de grafos aplicada a redes de telecomunicações tem demonstrado eficácia em problemas de otimização e deteção de interferências \cite{ref3}.
+
+\section{Soluções Existentes}
+A Tabela \ref{tab:solucoes} compara abordagens existentes para problemas similares:
+
+\begin{table}[H]
+\centering
+\caption{Comparação de soluções existentes}
+\label{tab:solucoes}
+\begin{tabular}{|l|l|l|} \hline 
+
+Solução & Estrutura de Dados  \\ \hline  
+Sistema A & Matriz estática \\ \hline  
+Sistema B & Grafos\\ \hline 
+\end{tabular}
+\end{table}
+
+A análise revelou que nenhuma das soluções existentes aborda especificamente o problema de deteção de efeitos nefastos entre antenas com a mesma frequencia.
+
+\chapter{Trabalho Desenvolvido}
+\section{Análise e Especificação}
+\subsection{Requisitos}
+Foram identificados os seguintes requisitos principais:
+\begin{itemize}
+\item Representação dinâmica da rede de antenas
+\item Deteção eficiente de localizações com interferência
+\item Armazenamento persistente dos dados
+\item Interface de visualização dos resultados
+\end{itemize}
+
+
+\section{Implementação}
+\subsection{Fase 1 - Listas Ligadas}
+Implementou-se uma lista ligada para armazenamento das antenas, com operações de:
+\begin{itemize}
+\item Inserção e remoção de elementos
+\item Cálculo de localizações com efeito nefasto
+\item Exportação de resultados
+\end{itemize}
+
+\subsection{Fase 2 - Grafos}
+A segunda fase implementou um grafo para representação das relações entre antenas, com algoritmos de:
+\begin{itemize}
+\item Busca em profundidade e largura
+\item Identificação de caminhos
+\item Deteção de intersecções
+\end{itemize}
+
+\chapter{Conclusão}
+O desenvolvimento deste projeto permitiu aplicar conceitos fundamentais de Estruturas de Dados e Algoritmos, como listas ligadas, grafos, buscas em profundidade (DFS) e largura (BFS), além de manipulação de ficheiros. O sistema implementado possibilita a gestão eficiente de antenas, cálculo de efeitos nefastos, identificação de interseções entre frequências e persistência dos dados em ficheiros binários.
+
+Durante a implementação, foram enfrentados desafios relacionados à manipulação de ponteiros, gestão de memória dinâmica e integração entre diferentes módulos do projeto. A validação das funcionalidades foi realizada através de testes com diferentes conjuntos de dados, garantindo a robustez e a correta execução das operações propostas.
+Para alem dos desafios encontrados na resolucao pratica deste projeto, tambem o tempo fora um obstaculo pois foi um projeto exigente.
+
+O projeto está devidamente documentado, facilitando a compreensão e manutenção do código. Recomenda-se, para trabalhos futuros, a implementação de uma interface gráfica e a otimização dos algoritmos de busca para grandes volumes de dados.
+\begin{itemize}
+\item Modelação eficiente do problema usando estruturas de dados avançadas
+\item Implementação de algoritmos otimizados para deteção de ressonância
+\item Documentação abrangente seguindo padrões académicos
+\end{itemize}
+
+
+\begin{thebibliography}{99} % O número define a largura dos rótulos (ex: 9 para 1-9, 99 para 1-99)
+\bibitem{openai2023chatgpt} 
+OpenAI. (2023). \emph{ChatGPT: Optimizing Language Models for Dialogue}. Disponível em: \url{https://openai.com/blog/chatgpt}. 
+
+\bibitem{latexcompanion} 
+Mittelbach, F. e Goossens, M. (2004). \emph{The LaTeX Companion}. 2ª ed. Addison-Wesley.
+
+\bibitem{deepseek2024} 
+DeepSeek. (2024). \emph{DeepSeek Chat: Advanced AI Language Model}. Disponível em: \url{https://www.deepseek.com}. 
+\end{thebibliography}
+
+\begin{itemize}
+      \item Link do repositório: \url{https://github.com/Rodriguiinhoo/MAIN-Repository.git}
+\end{itemize}
+
+\begin{appendix}
+\chapter{Manual de Utilização}
+
+Compilar e Executar o Programa 
+
+\begin{itemize}
+    \item Para compilar o Programa use o comando:
+
+        Make
+
+    \item Para Executar o Programa use o comando:
+
+        Make run 
+    
+    \item Para limpar os executaveis use:
+
+        make clean
+        
+    \item  Menu:
+    
+    Sera Aberto um Menu e tera de escolher uma opcao de 1 a 11, escolhendo a opcao desejada
+    
+\end{itemize}
+
+\end{appendix}
+
+\printglossaries
+
+\end{document}

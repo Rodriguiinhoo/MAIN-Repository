@@ -8,23 +8,25 @@
  */
 #include <stdio.h>
 #include <stdlib.h>
-#include "funcoes.h"
 #include "dados.h"
+#include "lista_antenas.h"
+#include "grafo_antenas.h"
 #include <string.h>
 
-int menu(){
-    printf("=================Menu===========================\n");
+int menu() {
     int opcao;
-    printf("1. Carregar antenas de um ficheiro\n");
-    printf("2. Inserir Antena\n");
-    printf("3. Calcular efeitos nefastos\n");
-    printf("4. Listar antenas\n");
-    printf("5. Listar Efeitos Nefastos\n");
-    printf("6. Escrever Dados num ficheiros em formato tabular\n");
-    printf("7. Libertar memoria da lista de antenas\n");
-    printf("8. Libertar a memoria da lista de efeitos nefastos\n");
-    printf("9. Criar grafo e executar operações\n");
-    printf("10. Sair\n");
+    printf("\n================= MENU =========================\n");
+    printf(" 1.  Carregar antenas de um ficheiro\n");
+    printf(" 2.  Inserir Antena \n");
+    printf(" 3.  Calcular efeitos nefastos\n");
+    printf(" 4.  Listar antenas\n");
+    printf(" 5.  Listar efeitos nefastos\n");
+    printf(" 6.  Criar grafo\n");
+    printf(" 7.  Interseções entre frequências\n");
+    printf(" 8.  Busca em Profundidade DFS\n");
+    printf(" 9.  Busca em Largura BFS\n");
+    printf(" 10.  Guardar grafo em ficheiro binário\n");
+    printf("11.  Sair\n");
     printf("================================================\n");
     printf("Escolha uma opção: ");
     scanf("%d", &opcao);
@@ -41,25 +43,20 @@ int menu(){
 
     Antena *listaAntenas = NULL; // Inicializa a lista de antenas como NULL
     EfeitoNefasto *listaEfeitos = NULL; // Inicializa a lista de efeitos nefastos como NULL
- 
+    Grafo *g = NULL; // Inicializa o grafo como NULL
+
+
     int opcao;
-    int opGrafo;
     do {
         opcao = menu();
         switch (opcao) {
  
             case 1: {
-                // Carregar antenas e evitar erros no nome do ficheiro
-                char nomeficheiro[100];
-                printf("Digite o nome do ficheiro: ");
-                scanf("%99s", nomeficheiro);
-             
                 // Liberar memória da lista antiga antes de carregar uma nova
                 libertarListaAntenas(listaAntenas);
                 listaAntenas = NULL; // Importante para evitar acessos inválidos
                 // carrega as antenas para a lista
-                listaAntenas = lerFicheiro(nomeficheiro);
-
+                listaAntenas = lerFicheiro("antenas.txt");
                 if (listaAntenas != NULL) {
                     printf("Antenas carregadas com sucesso!\n");
                 } else {
@@ -78,16 +75,15 @@ int menu(){
                 scanf("%d", &x);
                 printf("Digite a coordenada Y: ");
                 scanf("%d", &y);
-        
-                int posicao = 0;
-                printf("Digite a posição da antena que deseja inserir, ou por defeito será inserida no início da lista\n");
-                scanf("%d", &posicao);
-                listaAntenas = inserirAntena(listaAntenas, frequencia, x, y, posicao);
+                // chama a função para inserir a antena
+                listaAntenas = inserirAntenaOrdenada(listaAntenas, frequencia, x, y);
                 printf("Antena inserida com sucesso!\n");
                 break;
             }
 
             case 3:
+                libertarListaEfeitos(listaEfeitos);
+                // chama a função para calcular os efeitos nefastos
                 listaEfeitos = calcularEfeitosNefastos(listaAntenas);
                 printf("Efeitos nefastos calculados com sucesso!\n");
                 break;
@@ -106,58 +102,22 @@ int menu(){
                 else
                 listarEfeitos(listaEfeitos);
                 break;
- 
-            case 6:
-                libertarListaAntenas(listaAntenas);
-                listaAntenas = NULL;  // Importante para evitar acessos inválidos
-                printf("Memória da lista de antenas libertada com sucesso!\n");
-                break;
 
-            case 7:
-                libertarListaEfeitos(listaEfeitos);
-                listaEfeitos = NULL;  // Importante para evitar acessos inválidos
-                printf("Memória da lista de efeitos nefastos libertada com sucesso!\n");
-                break;
-
-            case 8:
-                printf("A sair do programa...\n");
-                exit(0); // Sair do programa
-                break;
-
-    case 9: {
-        // Declarar e criar o grafo a partir da lista de antenas
-        Grafo *g = criarGrafo(listaAntenas); // Certifique-se de que criarGrafo está implementada
-
-        printf("Operações com o grafo:\n");
-        printf("1. DFS a partir da primeira antena\n");
-        printf("2. BFS a partir da primeira antena\n");
-        printf("3. Interseções entre frequências\n");
-        printf("Escolha uma opção: ");
-        scanf("%d", &opGrafo);
-
-        switch(opGrafo) {
-            case 1: {
-                printf("DFS a partir da primeira antena:\n");
-                int linhas = 10, colunas = 20; // Ajuste conforme sua matriz
-                int **matrizVisitados = (int **)malloc(linhas * sizeof(int *));
-                for(int i = 0; i < linhas; i++) {
-                    matrizVisitados[i] = (int *)malloc(colunas * sizeof(int));
-                    memset(matrizVisitados[i], 0, colunas * sizeof(int));
+            case 6: { // Criar o grafo
+            if (g == NULL) {
+                g = criarGrafo(listaAntenas);
+                if (g != NULL) {
+                    printf("Grafo criado com sucesso!\n");
+                } else {
+                    printf("Erro ao criar o grafo.\n");
                 }
-                dfs(g->listvertices, NULL, matrizVisitados, linhas, colunas);
-                // Libere a matriz de visitados após o uso
-                for(int i = 0; i < linhas; i++) {
-                    free(matrizVisitados[i]);
-                }
-                free(matrizVisitados);
-                break;
+             } else {
+                printf("Grafo já criado!\n");
             }
-            case 2: {
-                printf("BFS a partir da primeira antena:\n");
-                bfs(g->listvertices, 10, 20); // Ajuste dimensões conforme necessário
-                break;
-            }
-            case 3: {
+            break;
+            }  
+
+            case 7: {
                 char f1, f2;
                 printf("Digite a primeira frequência: ");
                 scanf(" %c", &f1);
@@ -166,24 +126,70 @@ int menu(){
                 intersecoes(g->listvertices, f1, f2);
                 break;
             }
-            default:
-                printf("Opção inválida!\n");
+               
+           case 8: { // DFS
+            int idOrigem;
+            printf("ID da antena origem para DFS: ");
+            scanf("%d", &idOrigem);
+            Vertice *v = g->listvertices;
+            int idx = 0;
+            while (v != NULL && idx < idOrigem) {
+                v = v->proxvertice;
+                idx++;
+            }
+            if (v != NULL) {
+                int matrizVisitados[100][100] = {0};
+                dfs(v, matrizVisitados);
+            } else {
+                printf("Antena não encontrada.\n");
+            }
+            break;
+            }
+        
+
+            case 9: { // BFS
+                int idOrigem;
+                printf("ID da antena origem para BFS: ");
+                scanf("%d", &idOrigem);
+                Vertice *v = g->listvertices;
+                int idx = 0;
+                while (v != NULL && idx < idOrigem) {
+                    v = v->proxvertice;
+                    idx++;
+                }
+                if (v != NULL) {
+                    int matrizVisitados[100][100] = {0};
+                    bfs(v, matrizVisitados);
+                } else {
+                    printf("Antena não encontrada.\n");
+                }
                 break;
-        }
-        // Libere o grafo após o uso, se necessário
-        // liberarGrafo(g);
-    }
-            
+            }
+
+           case 10: { // Guardar grafo para ficheiro binário
+                if (guardarGrafoBinario(g, "grafo.bin")) {
+                    printf("Grafo guardado com sucesso!\n");
+                } else {
+                    printf("Erro ao guardar o grafo.\n");
+                }
+                break;
+            }   
+            case 11:{
+                 printf("A sair do programa...\n");
+                 printf(" A memoria sera libertada automaticamente\n");
+                exit(11); // Sair do programa
+                break;
+            }   
             default:
                 printf("Opção inválida! Tente novamente.\n");
                 break;
         }
 
-    } while (opcao != 8);
- 
+    } while (opcao != 11);
+
     // Libera memória antes de sair
     libertarListaAntenas(listaAntenas);
     libertarListaEfeitos(listaEfeitos);
- 
+    libertarGrafo(g) ;
     return 0;
 }
