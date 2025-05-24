@@ -32,10 +32,6 @@
 */
 Antena* lerFicheiro(const char *nomeFicheiro) {
     FILE *file = fopen(nomeFicheiro, "r");
-    if (!file) {
-        printf("Erro ao abrir o ficheiro!\n");
-        return NULL;
-    }
 
     Antena *lista = NULL;
     char linha[100];  // Buffer maior, se o ficheiro for maior que 20 caracteres por linha
@@ -47,11 +43,6 @@ Antena* lerFicheiro(const char *nomeFicheiro) {
             if (linha[y] == 'A' || linha[y] == '0') {  // Verifica se é A ou 0
                 // Criar uma nova antena
                 Antena *nova = (Antena*)malloc(sizeof(Antena));
-                if (nova == NULL) {
-                    printf("Erro ao alocar memória para uma nova antena!\n");
-                    fclose(file);
-                    return NULL;
-                }
                 nova->y = y;  // Y é a coluna
                 nova->x = x;  // X é a linha
                 nova->frequencia = linha[y];  // Guardar a frequência (A ou 0)
@@ -77,11 +68,6 @@ Antena* lerFicheiro(const char *nomeFicheiro) {
 Antena* inserirAntenaOrdenada(Antena *lista, char frequencia, int x, int y) {
 
     Antena *nova = (Antena *)malloc(sizeof(Antena));
-    if (nova == NULL) {
-        printf("Erro ao alocar memória para a antena\n");
-        return lista;
-    }
-
     nova->frequencia = frequencia;
     nova->x = x;
     nova->y = y;
@@ -104,6 +90,32 @@ Antena* inserirAntenaOrdenada(Antena *lista, char frequencia, int x, int y) {
     return lista;
 }
 
+/**
+ * @brief  Remove uma antena da lista com base na frequência e coordenadas
+ * 
+ * @param lista Lista de antenas
+ * @param frequencia Frequência da antena a remover
+ * @param x Coordenada X da antena a remover
+ * @param y Coordenada Y da antena a remover
+ * @return Antena* Nova cabeça da lista (pode ser NULL se lista ficar vazia)
+ */
+Antena* removerAntenaPorDados(Antena *lista, char frequencia, int x, int y) {
+    Antena *anterior = NULL, *atual = lista;
+    while (atual) {
+        if (atual->frequencia == frequencia && atual->x == x && atual->y == y) {
+            if (anterior)
+                anterior->prox = atual->prox;
+            else
+                lista = atual->prox;
+            free(atual);
+            return lista;
+        }
+        anterior = atual;
+        atual = atual->prox;
+    }
+    return lista;
+}
+
 
 /**
  * @brief  Funcao para adicionar um efeito nefasto a lista de efeitos nefastos de forma ordenada
@@ -116,10 +128,6 @@ Antena* inserirAntenaOrdenada(Antena *lista, char frequencia, int x, int y) {
  */
 EfeitoNefasto* adicionarEfeitoOrdenado(EfeitoNefasto *lista, int frequencia, int x, int y) {
     EfeitoNefasto *novo = (EfeitoNefasto *)malloc(sizeof(EfeitoNefasto));
-    if (novo == NULL) {
-        printf("Erro ao alocar memória para o efeito nefasto.\n");
-        return lista;
-    }
     novo->frequencia = frequencia;
     novo->x = x;
     novo->y = y;

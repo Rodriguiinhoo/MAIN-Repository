@@ -21,7 +21,7 @@
  typedef struct Antena {
      char frequencia; ///< Frequência da antena.
      int x, y;      ///< Coordenadas da antena (x, y).
-     struct Antena *prox; ///< Ponteiro para a próxima antena na lista.
+     struct Antena *prox; ///< permite criar um ponteiro para o proximo elemento da lista ligada das antenas
  } Antena;
 
 /**

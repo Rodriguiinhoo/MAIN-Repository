@@ -41,8 +41,9 @@ Este trabalho enquadra-se no âmbito da unidade curricular de Estruturas de Dado
 Os principais objetivos definidos foram:
 \begin{itemize}
 \item Desenvolver um modelo computacional para representação de redes de antenas
+   \subitem Implementar listas ligadas dinamicas para armazenamento de antenas
 \item Implementar algoritmos eficientes para deteção de interferências
-\item Validar a solução em diferentes cenários de teste
+    \subitem Utilizar grafos para representar relações(arestas) entre antenas(Vertices)
 \end{itemize}
 
 \section{Metodologia}
@@ -87,38 +88,41 @@ Foram identificados os seguintes requisitos principais:
 \begin{itemize}
 \item Representação dinâmica da rede de antenas
 \item Deteção eficiente de localizações com interferência
-\item Armazenamento persistente dos dados
 \item Interface de visualização dos resultados
 \end{itemize}
 
 
 \section{Implementação}
-\subsection{Fase 1 - Listas Ligadas}
+\subsection{Fase 1 - Listas Ligadas Dinamicas}
 Implementou-se uma lista ligada para armazenamento das antenas, com operações de:
 \begin{itemize}
-\item Inserção e remoção de elementos
+\item Inserção ordenada e remoção de Antenas
 \item Cálculo de localizações com efeito nefasto
-\item Exportação de resultados
+\item Procura em Profundidade(DFS)
+\item Mostrando os Resultados na Consola
 \end{itemize}
 
 \subsection{Fase 2 - Grafos}
 A segunda fase implementou um grafo para representação das relações entre antenas, com algoritmos de:
 \begin{itemize}
-\item Busca em profundidade e largura
-\item Identificação de caminhos
-\item Deteção de intersecções
+\item Criacao de um Grafo
+\item Adicionar arestas ao Grafo
+\item Procura em profundidade
+\item Resetar os Vertices de Visitado para Nao Visitado
+\item Libertar o Grafo
 \end{itemize}
 
 \chapter{Conclusão}
-O desenvolvimento deste projeto permitiu aplicar conceitos fundamentais de Estruturas de Dados e Algoritmos, como listas ligadas, grafos, buscas em profundidade (DFS) e largura (BFS), além de manipulação de ficheiros. O sistema implementado possibilita a gestão eficiente de antenas, cálculo de efeitos nefastos, identificação de interseções entre frequências e persistência dos dados em ficheiros binários.
+O desenvolvimento deste projeto permitiu aplicar conceitos fundamentais de Estruturas de Dados e Algoritmos, como listas ligadas dinamicas, grafos, buscas em profundidade (DFS) e além de manipulação de ficheiros. O sistema implementado possibilita a gestão eficiente de antenas e cálculo de efeitos nefastos.
 
 Durante a implementação, foram enfrentados desafios relacionados à manipulação de ponteiros, gestão de memória dinâmica e integração entre diferentes módulos do projeto. A validação das funcionalidades foi realizada através de testes com diferentes conjuntos de dados, garantindo a robustez e a correta execução das operações propostas.
 Para alem dos desafios encontrados na resolucao pratica deste projeto, tambem o tempo fora um obstaculo pois foi um projeto exigente.
 
 O projeto está devidamente documentado, facilitando a compreensão e manutenção do código. Recomenda-se, para trabalhos futuros, a implementação de uma interface gráfica e a otimização dos algoritmos de busca para grandes volumes de dados.
+    No Futuro pretendo melhorar o meu trabalho, adicionar mais funcinalidades para com isso aprender mais sobre porgramacao e principalmente com esta area de estruturas dinamicas que e muito usada atualmente.
 \begin{itemize}
 \item Modelação eficiente do problema usando estruturas de dados avançadas
-\item Implementação de algoritmos otimizados para deteção de ressonância
+\item Implementação de algoritmos otimizados para deteção de interferencias
 \item Documentação abrangente seguindo padrões académicos
 \end{itemize}
 

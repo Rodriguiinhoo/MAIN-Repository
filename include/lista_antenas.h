@@ -11,6 +11,7 @@
 int menu();
 Antena* lerFicheiro(const char *nomeFicheiro);
 Antena* inserirAntenaOrdenada(Antena *lista, char frequencia, int x, int y);
+Antena* removerAntenaPorDados(Antena *lista, char frequencia, int x, int y);
 EfeitoNefasto* calcularEfeitosNefastos(Antena *listaAntenas);
 EfeitoNefasto* adicionarEfeitoOrdenado(EfeitoNefasto *lista, int frequencia, int x, int y);
 void listarAntenas(Antena *listaAntenas);
